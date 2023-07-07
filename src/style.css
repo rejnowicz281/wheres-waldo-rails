@@ -1,0 +1,18 @@
+body {
+    margin: 0;
+}
+
+.Map {
+    position: relative;
+}
+
+.Map > img {
+    width: 100%;
+    height: 100%;
+}
+
+.TargetingBox {
+    position: absolute;
+    /* border: none;
+    background-color: inherit; */
+}
