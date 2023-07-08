@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import skiSlopes from "../assets/skiSlopes.jpeg";
+import MapImg from "./MapImg";
 import TargetingBox from "./TargetingBox";
 
 function Map({ characters }) {
@@ -18,14 +19,9 @@ function Map({ characters }) {
 
     return (
         <div className="Map">
-            <img
-                onLoad={() => console.log(realWidth, realHeight)}
-                onClick={(e) => console.log(e)}
-                src={skiSlopes}
-                alt="ski slopes"
-            />
+            <MapImg img={skiSlopes} />
+            {console.log(realWidth, realHeight)}
             {characters.map((character) => {
-                console.log(realWidth, realHeight);
                 return (
                     <TargetingBox
                         key={character.id}

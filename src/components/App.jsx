@@ -6,13 +6,19 @@ const characters = [
         id: 1,
         name: "Wizard",
         x: 210,
-        y: 1425,
+        y: 1440,
     },
     {
         id: 2,
         name: "Waldo",
-        x: 2575,
-        y: 1375,
+        x: 2565,
+        y: 1390,
+    },
+    {
+        id: 3,
+        name: "Odlaw",
+        x: 955,
+        y: 1215,
     },
 ];
 
