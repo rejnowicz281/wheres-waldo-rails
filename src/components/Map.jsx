@@ -1,58 +1,21 @@
-import axios from "axios";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
-import skiSlopes from "../assets/skiSlopes.jpeg";
 import MapImg from "./MapImg";
 import TargetingBox from "./TargetingBox";
 
-const API_URL = "http://localhost:3000/api/v1";
-
-async function getCharactersData() {
-    try {
-        const response = await axios.get(`${API_URL}/maps/1/characters`);
-        return response.data;
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-async function getMapData() {
-    try {
-        const response = await axios.get(`${API_URL}/maps/1`);
-        return response.data;
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-function Map() {
-    const [realWidth, setRealWidth] = useState(0);
-    const [realHeight, setRealHeight] = useState(0);
-
-    const [characters, setCharacters] = useState([]);
-    const [mapUrl, setMapUrl] = useState("");
+function Map({ characters, mapUrl }) {
+    const [originalWidth, setOriginalWidth] = useState(0); // Original width of map image
+    const [originalHeight, setOriginalHeight] = useState(0); // Original height of map image
 
     useEffect(() => {
-        const img = new Image();
-        img.src = skiSlopes;
-        img.onload = () => {
-            setRealWidth(img.width);
-            setRealHeight(img.height);
-        };
+        const realImg = new Image();
 
-        let mounted = true;
-        getCharactersData().then((data) => {
-            console.log(data);
-            if (mounted) setCharacters(data);
-        });
-
-        getMapData().then((data) => {
-            console.log(data);
-            if (mounted) setMapUrl(data.url);
-        });
-
-        return () => (mounted = false);
-    }, []);
+        realImg.src = mapUrl;
+        realImg.onload = () => {
+            setOriginalWidth(realImg.width);
+            setOriginalHeight(realImg.height);
+        }; // Get image's original width and height before it gets resized by CSS
+    }, [mapUrl]);
 
     return (
         <div className="Map">
@@ -61,10 +24,10 @@ function Map() {
                 return (
                     <TargetingBox
                         key={character.id}
-                        xPercent={character.x / realWidth}
-                        yPercent={character.y / realHeight}
-                        widthPercent={100 / realWidth}
-                        heightPercent={100 / realHeight}
+                        xPercent={character.x / originalWidth}
+                        yPercent={character.y / originalHeight}
+                        widthPercent={100 / originalWidth}
+                        heightPercent={100 / originalHeight}
                         onClick={() => console.log("found", character.name)}
                     />
                 );
@@ -82,6 +45,7 @@ Map.propTypes = {
             y: PropTypes.number.isRequired,
         })
     ),
+    mapUrl: PropTypes.string.isRequired,
 };
 
 export default Map;
