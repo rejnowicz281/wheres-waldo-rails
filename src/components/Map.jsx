@@ -1,8 +1,9 @@
+import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { mapPropType } from "../propTypes";
 import TargetingBox from "./TargetingBox";
 
-function Map({ map }) {
+function Map({ map, findCharacter }) {
     const [originalWidth, setOriginalWidth] = useState(0); // Original width of map image
     const [originalHeight, setOriginalHeight] = useState(0); // Original height of map image
 
@@ -27,7 +28,7 @@ function Map({ map }) {
                         yPercent={character.y / originalHeight}
                         widthPercent={100 / originalWidth}
                         heightPercent={100 / originalHeight}
-                        onClick={() => console.log("found", character.name)}
+                        onClick={() => findCharacter(character.name)}
                     />
                 );
             })}
@@ -37,6 +38,7 @@ function Map({ map }) {
 
 Map.propTypes = {
     map: mapPropType.isRequired,
+    findCharacter: PropTypes.func.isRequired,
 };
 
 export default Map;
