@@ -1,26 +1,25 @@
-import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
-import MapImg from "./MapImg";
+import { mapPropType } from "../propTypes";
 import TargetingBox from "./TargetingBox";
 
-function Map({ characters, mapUrl }) {
+function Map({ map }) {
     const [originalWidth, setOriginalWidth] = useState(0); // Original width of map image
     const [originalHeight, setOriginalHeight] = useState(0); // Original height of map image
 
     useEffect(() => {
         const realImg = new Image();
 
-        realImg.src = mapUrl;
+        realImg.src = map.image_url;
         realImg.onload = () => {
             setOriginalWidth(realImg.width);
             setOriginalHeight(realImg.height);
         }; // Get image's original width and height before it gets resized by CSS
-    }, [mapUrl]);
+    }, [map.image_url]);
 
     return (
         <div className="Map">
-            <MapImg img={mapUrl} />
-            {characters.map((character) => {
+            <img className="map-img" src={map.image_url} alt={map.name} />
+            {map.characters.map((character) => {
                 return (
                     <TargetingBox
                         key={character.id}
@@ -37,15 +36,7 @@ function Map({ characters, mapUrl }) {
 }
 
 Map.propTypes = {
-    characters: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.number.isRequired,
-            name: PropTypes.string.isRequired,
-            x: PropTypes.number.isRequired,
-            y: PropTypes.number.isRequired,
-        })
-    ),
-    mapUrl: PropTypes.string.isRequired,
+    map: mapPropType.isRequired,
 };
 
 export default Map;

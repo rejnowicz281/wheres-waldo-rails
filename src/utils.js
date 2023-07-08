@@ -10,4 +10,13 @@ async function getMapsData() {
     }
 }
 
-export { getMapsData };
+async function getMapData(id) {
+    try {
+        const response = await axios.get(`${API_URL}/maps/${id}`);
+        return response.data;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export { getMapData, getMapsData };
