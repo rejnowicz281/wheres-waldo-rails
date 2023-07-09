@@ -56,7 +56,7 @@ function MapPlay({ maps }) {
                 {hasFoundAll() && (
                     <>
                         {stopTimer()}
-                        <PlayEnd scores={map.scores} seconds={timer} />
+                        <PlayEnd mapId={map.id} scores={map.scores} seconds={timer} />
                     </>
                 )}
                 <CharactersFound characters={map.characters} isCharacterFound={isCharacterFound} />
