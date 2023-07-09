@@ -2,10 +2,10 @@ import PropTypes from "prop-types";
 import { secondsToTime } from "../helpers/utils";
 import { scorePropType } from "../propTypes";
 
-function PlayEnd({ scores }) {
+function PlayEnd({ scores, seconds }) {
     return (
         <div className="PlayEnd">
-            <h2>You found everyone!</h2>
+            <h2>You found everyone in {secondsToTime(seconds)}!</h2>
             {scores.length > 0 && (
                 <>
                     <h3>Previous scores: </h3>
@@ -24,6 +24,7 @@ function PlayEnd({ scores }) {
 
 PlayEnd.propTypes = {
     scores: PropTypes.arrayOf(scorePropType),
+    seconds: PropTypes.number.isRequired,
 };
 
 export default PlayEnd;
