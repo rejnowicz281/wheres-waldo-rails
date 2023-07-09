@@ -23,7 +23,7 @@ async function sendScore(map_id, player_name, seconds) {
     try {
         const response = await axios.post(`${API_URL}/maps/${map_id}/scores`, {
             score: {
-                player_name,
+                player_name: player_name || "Anon",
                 seconds,
             },
         });
