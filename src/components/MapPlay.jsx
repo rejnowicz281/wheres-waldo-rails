@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { mapPropType } from "../propTypes";
 import CharactersFound from "./CharactersFound";
 import Map from "./Map";
+import PlayEnd from "./PlayEnd";
 
 function MapPlay({ maps }) {
     const { id } = useParams();
@@ -37,7 +38,7 @@ function MapPlay({ maps }) {
         return (
             <div className="MapPlay">
                 <h1>{map.name}</h1>
-                {hasFoundAll() && <h2>You found everyone!</h2>}
+                {hasFoundAll() && <PlayEnd scores={map.scores} />}
                 <CharactersFound characters={map.characters} isCharacterFound={isCharacterFound} />
                 <Map map={map} findCharacter={findCharacter} />
             </div>

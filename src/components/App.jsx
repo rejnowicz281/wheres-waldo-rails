@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter, Link, Navigate, Route, Routes } from "react-router-dom";
-import { getMapsData } from "../utils";
+import { getMapsData } from "../helpers/apiUtils.js";
 import Home from "./Home";
 import MapPlay from "./MapPlay";
 
