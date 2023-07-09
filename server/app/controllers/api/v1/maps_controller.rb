@@ -1,15 +1,24 @@
 class Api::V1::MapsController < ApplicationController
   # GET /maps
   def index
-    @maps = Map.includes(:characters).all
+    @maps = associated_maps.all
 
-    render json: @maps.map { |map| map.as_json(include: :characters).merge(image_url: url_for(map.image)) }
+    render json: @maps.map { |map| map_with_associations(map) }
   end
 
   # GET /maps/1
   def show
-    @map = Map.includes(:characters).find(params[:id])
+    @map = associated_maps.find(params[:id])
 
-    render json: @map.as_json(include: :characters).merge(image_url: url_for(@map.image))
+    render json: map_with_associations(@map)
+  end
+
+  private
+  def associated_maps
+    Map.includes(:characters, :scores)
+  end
+
+  def map_with_associations(map)
+    map.as_json(include: [:characters, :scores]).merge(image_url: url_for(map.image))
   end
 end
