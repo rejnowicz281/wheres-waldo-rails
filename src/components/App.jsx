@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter, Link, Navigate, Route, Routes } from "react-router-dom";
-import { getMapsData } from "../helpers/apiUtils.js";
+import images from "../assets";
+import { getMapsData } from "../helpers/apiUtils";
 import Home from "./Home";
 import MapPlay from "./MapPlay";
 
@@ -9,13 +10,14 @@ function App() {
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
-        getMapsData().then((data) => {
+        getMapsData().then((mapsData) => {
             if (!mounted) {
-                setMaps(data);
+                mapsData.map((map) => (map["image_url"] = images[map.filename]));
+                setMaps(mapsData);
                 setMounted(true);
             }
         });
-    }, [mounted]);
+    }, []);
 
     if (mounted) {
         return (

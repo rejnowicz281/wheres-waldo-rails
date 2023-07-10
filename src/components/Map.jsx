@@ -15,7 +15,7 @@ function Map({ map, findCharacter }) {
             setOriginalWidth(realImg.width);
             setOriginalHeight(realImg.height);
         }; // Get image's original width and height before it gets resized by CSS
-    }, [map.image_url]);
+    }, []);
 
     return (
         <div className="Map">

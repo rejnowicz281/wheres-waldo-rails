@@ -19,6 +19,6 @@ class Api::V1::MapsController < ApplicationController
   end
 
   def map_with_associations(map)
-    map.as_json(include: [:characters, :scores]).merge(image_url: url_for(map.image))
+    map.as_json(include: [:characters, :scores])
   end
 end
