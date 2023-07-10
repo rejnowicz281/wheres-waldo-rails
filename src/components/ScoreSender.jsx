@@ -4,16 +4,21 @@ import { sendScore } from "../helpers/apiUtils";
 
 function ScoreSender({ mapId, seconds, scoreIsSent, setscoreIsSent }) {
     const [playerName, setPlayerName] = useState("");
+    const [isSending, setIsSending] = useState(false);
 
     async function handleSend() {
+        setIsSending(true);
+
         const response = await sendScore(mapId, playerName, seconds);
-        if (response) {
-            setscoreIsSent(true);
-        }
+        if (response) setscoreIsSent(true);
+
+        setIsSending(false);
     }
 
     if (scoreIsSent) {
         return <h2 className="text-center success">Score Sent!</h2>;
+    } else if (isSending) {
+        return <h2 className="text-center">Sending Score...</h2>;
     } else {
         return (
             <div className="ScoreSender text-center">
