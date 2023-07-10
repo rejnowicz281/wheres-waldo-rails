@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BrowserRouter, Link, Navigate, Route, Routes } from "react-router-dom";
+import { HashRouter, Link, Navigate, Route, Routes } from "react-router-dom";
 import images from "../assets";
 import { getMapsData } from "../helpers/apiUtils";
 import Home from "./Home";
@@ -21,7 +21,7 @@ function App() {
 
     if (mounted) {
         return (
-            <BrowserRouter>
+            <HashRouter>
                 <nav className="text-center">
                     <Link to="/wheres-waldo/maps">Where&apos;s Waldo?</Link>
                 </nav>
@@ -30,7 +30,7 @@ function App() {
                     <Route path="/wheres-waldo/maps" element={<Home maps={maps} />} />
                     <Route path="/wheres-waldo/maps/:id" element={<MapPlay maps={maps} />} />
                 </Routes>
-            </BrowserRouter>
+            </HashRouter>
         );
     }
 }
