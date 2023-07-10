@@ -51,7 +51,7 @@ function MapPlay({ maps }) {
     if (mounted) {
         return (
             <div className="MapPlay">
-                <h2>Time: {secondsToTime(timer)}</h2>
+                {!hasFoundAll() && <h2>Time: {secondsToTime(timer)}</h2>}
                 <h1>{map.name}</h1>
                 {hasFoundAll() && (
                     <>

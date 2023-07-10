@@ -9,16 +9,16 @@ function PlayEnd({ mapId, scores, seconds }) {
             <h2>You found everyone in {secondsToTime(seconds)}!</h2>
             <ScoreSender mapId={mapId} seconds={seconds} />
             {scores.length > 0 && (
-                <>
-                    <h3>High scores: </h3>
-                    <ol>
+                <div className="leaderboard">
+                    <h3 className="text-center">Leaderboard: </h3>
+                    <ol className="leaderboard-list">
                         {scores.slice(0, 3).map((score) => (
                             <li key={score.id}>
                                 {score.player_name} - {secondsToTime(score.seconds)}
                             </li>
                         ))}
                     </ol>
-                </>
+                </div>
             )}
         </div>
     );

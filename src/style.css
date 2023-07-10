@@ -7,6 +7,10 @@ body {
     text-align: center;
 }
 
+.success {
+    color: rgb(62, 199, 62);
+}
+
 .MapPlay,
 .MapShowcase {
     display: flex;
@@ -84,4 +88,40 @@ nav > a {
 
 nav > a:hover {
     color: rgb(34, 171, 34);
+}
+
+.leaderboard-list {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.score-input,
+.send-score-button {
+    padding: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.score-input {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border: none;
+}
+
+.score-input:focus {
+    outline: none;
+}
+
+.send-score-button {
+    border: none;
+    background-color: rgb(78, 77, 77);
+    color: white;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    cursor: pointer;
+    transition: 0.1s;
+}
+
+.send-score-button:hover {
+    background-color: rgb(100, 98, 98);
 }

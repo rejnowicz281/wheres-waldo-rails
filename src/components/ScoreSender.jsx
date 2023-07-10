@@ -14,17 +14,20 @@ function ScoreSender({ mapId, seconds }) {
     }
 
     if (sentScore) {
-        return <h2>Score Sent!</h2>;
+        return <h2 className="text-center success">Score Sent!</h2>;
     } else {
         return (
-            <div className="ScoreSender">
+            <div className="ScoreSender text-center">
                 <input
+                    className="score-input"
                     type="text"
                     placeholder="Your Name"
                     value={playerName}
                     onChange={(e) => setPlayerName(e.target.value)}
                 />
-                <button onClick={handleSend}>Send Score</button>
+                <button className="send-score-button" onClick={handleSend}>
+                    Send Your Score
+                </button>
             </div>
         );
     }
