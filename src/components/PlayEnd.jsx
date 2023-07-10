@@ -1,24 +1,19 @@
 import PropTypes from "prop-types";
+import { useState } from "react";
 import { secondsToTime } from "../helpers/utils";
 import { scorePropType } from "../propTypes";
+import Leaderboard from "./Leaderboard";
 import ScoreSender from "./ScoreSender";
 
 function PlayEnd({ mapId, scores, seconds }) {
+    const [scoreIsSent, setscoreIsSent] = useState(false);
+
     return (
         <div className="PlayEnd">
             <h2>You found everyone in {secondsToTime(seconds)}!</h2>
-            <ScoreSender mapId={mapId} seconds={seconds} />
+            <ScoreSender mapId={mapId} seconds={seconds} scoreIsSent={scoreIsSent} setscoreIsSent={setscoreIsSent} />
             {scores.length > 0 && (
-                <div className="leaderboard">
-                    <h3 className="text-center">Leaderboard: </h3>
-                    <ol className="leaderboard-list">
-                        {scores.slice(0, 3).map((score) => (
-                            <li key={score.id}>
-                                {score.player_name} - {secondsToTime(score.seconds)}
-                            </li>
-                        ))}
-                    </ol>
-                </div>
+                <Leaderboard mapId={mapId} scoreAchieved={seconds} initialScores={scores} scoreIsSent={scoreIsSent} />
             )}
         </div>
     );

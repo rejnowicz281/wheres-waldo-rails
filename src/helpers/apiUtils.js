@@ -24,4 +24,13 @@ async function sendScore(map_id, player_name, seconds) {
     }
 }
 
-export { getMapsData, sendScore };
+async function getScoresData(map_id) {
+    try {
+        const response = await axios.get(`${API_URL}/maps/${map_id}/scores`);
+        return response.data;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export { getMapsData, getScoresData, sendScore };

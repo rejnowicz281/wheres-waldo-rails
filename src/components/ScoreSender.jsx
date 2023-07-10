@@ -2,18 +2,17 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import { sendScore } from "../helpers/apiUtils";
 
-function ScoreSender({ mapId, seconds }) {
+function ScoreSender({ mapId, seconds, scoreIsSent, setscoreIsSent }) {
     const [playerName, setPlayerName] = useState("");
-    const [sentScore, setSentScore] = useState(false);
 
     async function handleSend() {
         const response = await sendScore(mapId, playerName, seconds);
         if (response) {
-            setSentScore(true);
+            setscoreIsSent(true);
         }
     }
 
-    if (sentScore) {
+    if (scoreIsSent) {
         return <h2 className="text-center success">Score Sent!</h2>;
     } else {
         return (
@@ -36,6 +35,8 @@ function ScoreSender({ mapId, seconds }) {
 ScoreSender.propTypes = {
     mapId: PropTypes.number.isRequired,
     seconds: PropTypes.number.isRequired,
+    scoreIsSent: PropTypes.bool.isRequired,
+    setscoreIsSent: PropTypes.func.isRequired,
 };
 
 export default ScoreSender;
